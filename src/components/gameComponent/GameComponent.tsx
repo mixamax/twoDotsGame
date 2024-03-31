@@ -27,9 +27,10 @@ export const GameComponent = (props: Props) => {
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-        const mouseDownHandler = window.addEventListener("pointerdown", () =>
-            onMouseDownHandler(ctx)
-        );
+        const mouseDownHandler = window.addEventListener("pointerdown", (e) => {
+            e.preventDefault();
+            onMouseDownHandler(ctx);
+        });
         const mouseUpHandler = window.addEventListener("pointerup", () => {
             const score = onMouseUpHandler();
             props.setListOfDots(score.scoreMatrix);
@@ -48,9 +49,9 @@ export const GameComponent = (props: Props) => {
         props.setListOfDots(scoreMatrix);
         loop(ctx);
         return () => {
-            window.removeEventListener("mousedown", () => mouseDownHandler);
-            window.removeEventListener("mouseup", () => mouseUpHandler);
-            canvas.removeEventListener("mousemove", () => mouseMoveHandler);
+            window.removeEventListener("pointerdown", () => mouseDownHandler);
+            window.removeEventListener("pointerup", () => mouseUpHandler);
+            canvas.removeEventListener("pointermove", () => mouseMoveHandler);
         };
     }, [props.width, props.numberOfRestart]);
 
