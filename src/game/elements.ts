@@ -263,6 +263,7 @@ export function onMouseUpHandler() {
 
         scoreOfMove--;
         const newMatrix = matrix.map((column) =>
+            // @ts-ignore
             column.filter((dot) => !selectedDots.includes(dot))
         );
         newMatrix.forEach((column) => {
