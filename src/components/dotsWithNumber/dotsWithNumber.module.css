@@ -1,0 +1,15 @@
+.dot-in-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dot-in-header {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.dot-in-header-number {
+    font-size: 1.2rem;
+    font-weight: 500;
+}

@@ -1,0 +1,10 @@
+.line-of-select-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.line-of-select {
+    height: 1rem;
+    transition: width 0.3s ease-in-out;
+}
