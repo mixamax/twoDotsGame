@@ -6,11 +6,9 @@ type Props = {
     selectedDotsNumber: number;
 };
 export const LineOfSelect = (props: Props) => {
-    console.log("RENDER LINE");
-    // console.log(props.selectedDots);
     const color = props.selectedDots[0]?.color || "black";
     const width = props.selectedDotsNumber * 70;
-    console.log(color, width);
+
     return (
         <div className={styles["line-of-select-container"]}>
             <div

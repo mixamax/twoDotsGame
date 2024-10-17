@@ -27,23 +27,27 @@ export const GameComponent = (props: Props) => {
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-        const mouseDownHandler = window.addEventListener("pointerdown", (e) => {
+        const mouseDownHandler = (e: MouseEvent) => {
             e.preventDefault();
             onMouseDownHandler(ctx);
-        });
-        const mouseUpHandler = window.addEventListener("pointerup", () => {
+        };
+        const mouseUpHandler = () => {
             const score = onMouseUpHandler();
             props.setListOfDots(score.scoreMatrix);
             props.setMoveNumber(score.scoreOfMove);
             props.setSelectedDotsNumber(0);
-        });
-        const mouseMoveHandler = canvas.addEventListener("pointermove", (e) => {
+        };
+        const mouseMoveHandler = (e: MouseEvent) => {
             const selectedDots = onMoveMouseHandler(canvas, e, ctx);
             if (selectDotsRef.current !== selectedDots.length) {
                 selectDotsRef.current = selectedDots.length;
                 props.setSelectedDots(selectedDots);
             }
-        });
+        };
+        window.addEventListener("pointerdown", mouseDownHandler);
+        window.addEventListener("pointerup", mouseUpHandler);
+        canvas.addEventListener("pointermove", mouseMoveHandler);
+
         const scoreMatrix = init(canvas, props.width, 20);
         props.setMoveNumber(20);
         props.setListOfDots(scoreMatrix);

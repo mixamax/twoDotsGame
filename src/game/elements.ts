@@ -14,7 +14,6 @@ let mouse2 = { x: 0, y: 0 };
 let canDrawLine = false;
 let startDot: Dot;
 let selectedDots: Dot[] = [];
-//colors: pink = "#FFB6C1", blue = "#87CEFA", yellow = "#FFD700", green = "#98FB98"
 const colors = ["#FFB6C1", "#87CEFA", "#FFD700", "#98FB98"];
 let scoreOfMove: number;
 export let scoreMatrix: scoreDot[] = [];
@@ -28,7 +27,6 @@ export function init(
     width: number,
     initMove: number
 ) {
-    // w = canvas.width = innerWidth;
     w = canvas.width = width;
     h = canvas.height = 500;
     startXofDots = w / 2 - ((sizeOfMatrix - 1) * distanceBetweenDots) / 2;
@@ -50,8 +48,6 @@ export class scoreDot {
         this.y = 20;
         this.textY = 50;
         this.startScore = 15;
-        // this.sound = new Audio();
-        // this.sound.src = "pepSound3.mp3";
     }
     setStartScore(score: number) {
         if (score < 0) {
@@ -127,21 +123,7 @@ function createCircle(
     fill ? ctx.fill() : ctx.stroke();
 }
 
-// init();
-
-// console.log(matrix);
-
 function draw(ctx: CanvasRenderingContext2D) {
-    // ctx.font = "34px serif";
-    // ctx.fillStyle = "black";
-    // ctx.fillText(`${scoreOfMove}`, 600, 30);
-
-    // scoreMatrix.forEach((dot) => {
-    //     createCircle(dot.x, dot.y, 15, true, dot.color, ctx);
-    //     ctx.font = "18px serif";
-    //     ctx.fillText(`${dot.startScore}`, dot.x - 7.5, dot.textY);
-    // });
-
     matrix.forEach((column, columnIndex) =>
         column.forEach((dot, index) => {
             dot &&
@@ -276,19 +258,12 @@ export function onMouseUpHandler() {
 
         matrix = newMatrix;
         deleteLine();
-        console.log(matrix);
     }
     return { scoreMatrix, scoreOfMove };
 }
-
-// window.addEventListener("mousedown", () => onMouseDownHandler(ctx));
-// window.addEventListener("mouseup", onMouseUpHandler);
-// canvas.addEventListener("mousemove", (e) => onMoveMouseHandler(canvas, e, ctx));
 
 export function loop(ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, w, h); // очищаем canvas
     draw(ctx);
     window.requestAnimationFrame(() => loop(ctx));
 }
-
-// loop(ctx);
