@@ -1,5 +1,6 @@
-// const canvas = document.querySelector("canvas");
-// const ctx = canvas.getContext("2d");
+import sound3Url from "../../pepSound3.mp3";
+import sound1Url from "../../pepSound1.mp3";
+
 let w: number;
 let h: number;
 const sizeOfMatrix = 5;
@@ -70,7 +71,7 @@ export class Dot {
         this._y = y;
         this.column = column;
         this.sound = new Audio();
-        this.sound.src = "pepSound3.mp3";
+        this.sound.src = sound3Url;
     }
 
     get y() {
@@ -191,7 +192,7 @@ export function onMoveMouseHandler(
                     ) {
                         if (!selectedDots.includes(startDot)) {
                             selectedDots.push(startDot);
-                            new Audio("pepSound1.mp3").play();
+                            new Audio(sound1Url).play();
                         }
 
                         startDot = dot;
